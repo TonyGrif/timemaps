@@ -38,6 +38,7 @@ while read line; do
         -F 2 \
         -f JSON \
         -l "timemaps/logs/info.txt" \
-        "$line"
+        "$line" \
+        > "timemaps/${md5}.json"
     sleep 30
 done < $1
