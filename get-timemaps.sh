@@ -25,8 +25,11 @@ if [[ ! -d "timemaps/logs" ]]; then
     mkdir timemaps/logs
 fi
 
+echo "Hash,URI" > timemaps/Keys.csv
+
 while read line; do
     md5=`echo -n "$line" | md5sum | awk '{print $1}'`
+    echo "${md5},${line}" >> timemaps/Keys.csv
 
     ./memgator-linux-amd64 \
         -a https://raw.githubusercontent.com/odu-cs432-websci/public/main/archives.json \
