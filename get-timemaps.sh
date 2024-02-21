@@ -26,6 +26,8 @@ if [[ ! -d "timemaps/logs" ]]; then
 fi
 
 while read line; do
+    md5=`echo -n "$line" | md5sum | awk '{print $1}'`
+
     ./memgator-linux-amd64 \
         -a https://raw.githubusercontent.com/odu-cs432-websci/public/main/archives.json \
         -b "timemaps/logs/benchmarks.txt" \
