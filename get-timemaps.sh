@@ -15,4 +15,11 @@
 # Requirements:
 #   MemGator (https://github.com/oduwsdl/MemGator)
 
-echo "Hello!"
+if [[ ! -d "timemaps" ]]; then
+    echo "Creating timemaps directory"
+    mkdir timemaps
+fi
+
+while read line; do
+    echo "$line"
+done < $1
