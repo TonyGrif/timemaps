@@ -5,6 +5,8 @@ generated from MemGator.
 """
 
 import argparse
+import gzip
+import json
 from pathlib import Path
 
 
@@ -26,9 +28,16 @@ def main():
         return
 
     for file in args.directory.iterdir():
-        if file.suffix != ".json":
+        if file.suffixes != [".json", ".gz"]:
             continue
-        print(file)
+
+        with gzip.open(file, 'r') as fin:
+            try:
+                jstr = json.loads(fin.read().decode('utf-8'))
+                print(len(jstr['mementos']['list']))
+            except json.decoder.JSONDecodeError:
+                continue
+
 
     print("| Mementos | URI-Rs |")
 
