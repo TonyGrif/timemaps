@@ -41,10 +41,12 @@ def main():
                 data.append(0)
                 continue
 
-    print(data)
-
+    data.sort()
+    count = Counter(data)
 
     print("| Mementos | URI-Rs |")
+    for elem in count.items():
+        print(f"| {elem[0]} | {elem[1]} |")
 
 
 if __name__ == "__main__":
